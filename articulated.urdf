@@ -1,10 +1,47 @@
 <?xml version="1.0"?>
 <robot name="myfirst">
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
   <link name="base_link">
     <visual>
       <geometry>
         <cylinder length="0.6" radius="0.2"/>
       </geometry>
+      <material name="blue"/>
     </visual>
   </link>
+  <link name="shoulder">
+		<visual>
+			<geometry>
+				<box size="1 0.2 0.2" />
+			</geometry>
+			<origin rpy="0 0.8 0" xyz="-0.32 0 0.3"/>
+			<material name="white"/>
+		</visual>
+	</link>	
+	 <link name="elbow">
+		<visual>
+			<geometry>
+				<box size="0.7 0.18 0.18" />
+			</geometry>
+			<origin rpy="0 0 0" xyz="-0.25 0 0"/>
+		</visual>
+	</link>	
+   <joint name="base_to_shoulder" type="fixed">
+    <parent link="base_link"/>
+    <child link="shoulder"/>
+    <origin xyz="0 0 0.3"/>
+  </joint>
+  <joint name="shoulder_to_elbow" type="fixed">
+    <parent link="shoulder"/>
+    <child link="elbow"/>
+    <origin xyz="-0.6 0 0.6"/>
+  </joint>
 </robot>
